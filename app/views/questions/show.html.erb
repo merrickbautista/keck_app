@@ -1,0 +1,26 @@
+<h1><%= @question.subject %></h1>
+<div class="question">
+	<%= @question.id%>. <%= @question.content %>
+</div>
+<div class="choices">
+	<label class="radio">
+	  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+	  A. <%=@question.answers[0].content %>
+	</label>
+	<label class="radio">
+	  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+	  B. <%= @question.answers[1].content %>
+	</label>
+	<label class="radio">
+	  <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+	  C. <%= @question.answers[2].content %>
+	</label>
+	<label class="radio">
+	  <input type="radio" name="optionsRadios" id="optionsRadios4" value="option4">
+	  D. <%= @question.answers[3].content %>
+	</label>
+</div>
+<div class="submit-buttons">
+  <button type="submit" class="btn btn-primary">Submit Answer</button>
+  <button type="submit" class="btn btn-success">Score Exam</button>
+</div>

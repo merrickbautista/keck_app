@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+question = Question.create(content: "The presynpatic cell reuptakes choline by ___________.", subject: "Physiology")
+
+question.answers.create(content: "diffusion")
+question.answers.create(content: "paired movement with Na+", correct: true)
+question.answers.create(content: "paired movement with K+")
+question.answers.create(content: "active transportation")
