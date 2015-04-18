@@ -1,0 +1,18 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+	text-align: center;
+}
+
+.question {
+	margin: auto;
+	width: 350px;
+	text-align: left;
+}
+
+.choices {
+	margin: auto;
+	width: 300px;
+	text-align: left;
+}
