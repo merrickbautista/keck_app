@@ -21,6 +21,25 @@
 	</label>
 </div>
 <div class="submit-buttons">
-  <button type="submit" class="btn btn-primary">Submit Answer</button>
-  <button type="submit" class="btn btn-success">Score Exam</button>
+  <%= link_to "Submit Answer", question_path(@question.id+1), class: "btn btn-primary btn-sm" %>
+  <button type="submit" class="btn btn-success btn-sm">Score Exam</button>
 </div>
+<nav>
+  <ul class="pagination">
+    <li>
+      <a href=<%=question_path(@question.id-1)%> aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href=<%=question_path(1)%>>1</a></li>
+    <li><a href=<%=question_path(2)%>>2</a></li>
+    <li><a href=<%=question_path(3)%>>3</a></li>
+    <li><a href=<%=question_path(1)%>>4</a></li>
+    <li><a href=<%=question_path(1)%>>5</a></li>
+    <li>
+      <a href=<%=question_path(@question.id+1)%> aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

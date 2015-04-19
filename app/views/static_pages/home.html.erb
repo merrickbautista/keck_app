@@ -1,5 +1,14 @@
 <h1>Welcome to the KeckStand</h1>
 
-<p>
-  	<%= link_to "Physiology", question_path(1), class: "btn btn-success btn-lg" %>
-</p>
+<div class="container-option">
+		<%= link_to "Neuroanatomy", '#', class: "btn btn-primary btn-lg btn-option disabled" %>
+		<%= link_to "Pathology", '#', class: "btn btn-primary btn-lg btn-option disabled" %>
+	  	<%= link_to "Physiology", question_path(1), class: "btn btn-success btn-lg btn-option" %>
+	  	<%= link_to "Pharmacology", '#', class: "btn btn-primary btn-lg btn-option disabled" %>
+	  	<%= link_to "Neurochemistry", '#', class: "btn btn-primary btn-lg btn-option disabled" %>
+	  	<%= link_to "Neurology", '#', class: "btn btn-primary btn-lg btn-option disabled" %>
+	  	<%= link_to "Psychology", '#', class: "btn btn-primary btn-lg btn-option disabled" %>
+	  	<%= link_to "Neuroradiology", '#', class: "btn btn-primary btn-lg btn-option disabled" %>
+	  	<%= link_to "Microanatomy", '#', class: "btn btn-primary btn-lg btn-option disabled" %>
+	  	<%= link_to "Embryology", '#', class: "btn btn-primary btn-lg btn-option disabled" %>
+</div>
