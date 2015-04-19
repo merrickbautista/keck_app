@@ -4,6 +4,7 @@ class QuestionsController < ApplicationController
 
   def show
   	@question = Question.find(params[:id])
+  	@count = Question.all.size
   end
 
   def index

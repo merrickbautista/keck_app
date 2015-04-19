@@ -8,6 +8,21 @@
 </head>
 <body>
 
+<%# Needed for Devise %>
+<% if notice %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-danger"><%= alert %></p>
+<% end %>
+
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <div class="container">
+  	<%= link_to "KECKSTAND", root_path, class: "navbar-brand" %>
+    <%= link_to "Sign In", user_session_path, class: "btn btn-primary navbar-btn" %>
+  </div>
+</nav>
+
 <%= yield %>
 
 </body>

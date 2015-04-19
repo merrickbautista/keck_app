@@ -46,3 +46,6 @@ end
 
 #Bootstrap
 gem 'bootstrap-sass', '~> 3.3.4'
+
+#Devise
+gem 'devise'

@@ -31,11 +31,9 @@
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    <li><a href=<%=question_path(1)%>>1</a></li>
-    <li><a href=<%=question_path(2)%>>2</a></li>
-    <li><a href=<%=question_path(3)%>>3</a></li>
-    <li><a href=<%=question_path(1)%>>4</a></li>
-    <li><a href=<%=question_path(1)%>>5</a></li>
+    <% @count.times do |i| %>
+    	<li><a href=<%=question_path(i+1)%>><%=i+1%></a></li>
+    <% end %>
     <li>
       <a href=<%=question_path(@question.id+1)%> aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
