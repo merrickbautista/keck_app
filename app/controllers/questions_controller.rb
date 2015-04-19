@@ -12,4 +12,8 @@ class QuestionsController < ApplicationController
 
   def create
   end
+
+  def pre_show
+  	@scantron = Scantron.new(answers: "")
+  end
 end
