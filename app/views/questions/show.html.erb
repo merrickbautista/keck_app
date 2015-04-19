@@ -27,17 +27,21 @@
 <nav>
   <ul class="pagination">
     <li>
-      <a href=<%=question_path(@question.id-1)%> aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
+      <% if @question.id == 0 %>
+      	<a href=<%=question_path(@question.id-1)%> aria-label="Previous">
+        	<span aria-hidden="true">&laquo;</span>
+      	</a>
+      <% end %>
     </li>
     <% @count.times do |i| %>
     	<li><a href=<%=question_path(i+1)%>><%=i+1%></a></li>
     <% end %>
     <li>
-      <a href=<%=question_path(@question.id+1)%> aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
+   	  <% if @question.id < @count %>
+      	<a href=<%=question_path(@question.id+1)%> aria-label="Next">
+        	<span aria-hidden="true">&raquo;</span>
+      	</a>
+      <% end %>
     </li>
   </ul>
 </nav>
