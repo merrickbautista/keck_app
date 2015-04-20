@@ -3,42 +3,57 @@
 	<%= @question.id%>. <%= @question.content %>
 </div>
 <div class="choices">
+  <%= form_tag(question_path(@question.id, answers: params[:answers]), method: :put) do %>
+  <% @answers = params[:answers] %>
 	<label class="radio">
-	  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-	  A. <%=@question.answers[0].content %>
+    <% if @answers[@question.id-1] == "A" %>
+	   <%= radio_button_tag :answer, "A", active: true %> A. <%=@question.answers[0].content%>
+    <% else %>
+      <%= radio_button_tag :answer, "A" %> A. <%=@question.answers[0].content%>
+    <% end %>
 	</label>
 	<label class="radio">
-	  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-	  B. <%= @question.answers[1].content %>
+	  <% if @answers[@question.id-1] == "B" %>
+     <%= radio_button_tag :answer, "B", active: true %> B. <%=@question.answers[1].content%>
+    <% else %>
+      <%= radio_button_tag :answer, "B" %> B. <%=@question.answers[1].content%>
+    <% end %>
 	</label>
 	<label class="radio">
-	  <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
-	  C. <%= @question.answers[2].content %>
+	  <% if @answers[@question.id-1] == "C" %>
+     <%= radio_button_tag :answer, "C", active: true %> C. <%=@question.answers[2].content%>
+    <% else %>
+      <%= radio_button_tag :answer, "C" %> C. <%=@question.answers[2].content%>
+    <% end %>
 	</label>
 	<label class="radio">
-	  <input type="radio" name="optionsRadios" id="optionsRadios4" value="option4">
-	  D. <%= @question.answers[3].content %>
-	</label>
-</div>
-<div class="submit-buttons">
-  <%= link_to "Submit Answer", question_path(@question.id+1), class: "btn btn-primary btn-sm" %>
-  <button type="submit" class="btn btn-success btn-sm">Score Exam</button>
+	  <% if @answers[@question.id-1] == "D" %>
+     <%= radio_button_tag :answer, "D", active: true %> D. <%=@question.answers[3].content%>
+    <% else %>
+      <%= radio_button_tag :answer, "D" %> D. <%=@question.answers[3].content%>
+    <% end %>
+  </label>
+  <div class="submit-buttons">
+    <%= submit_tag 'Submit Answer' , class: "btn btn-primary btn-sm" %>
+    <%= link_to "Score Exam", finished_path(answers: params[:answers]), class: "btn btn-success btn-sm" %>
+  </div>
+  <% end %>
 </div>
 <nav>
   <ul class="pagination">
     <li>
-      <% if @question.id == 0 %>
-      	<a href=<%=question_path(@question.id-1)%> aria-label="Previous">
+      <% if @question.id > 1 %>
+      	<a href=<%=question_path(@question.id-1, answers: params[:answers])%> aria-label="Previous">
         	<span aria-hidden="true">&laquo;</span>
       	</a>
       <% end %>
     </li>
     <% @count.times do |i| %>
-    	<li><a href=<%=question_path(i+1)%>><%=i+1%></a></li>
+    	<li><a href=<%=question_path(i+1, answers: params[:answers])%>><%=i+1%></a></li>
     <% end %>
     <li>
    	  <% if @question.id < @count %>
-      	<a href=<%=question_path(@question.id+1)%> aria-label="Next">
+      	<a href=<%=question_path(@question.id+1, answers: params[:answers]) %> aria-label="Next">
         	<span aria-hidden="true">&raquo;</span>
       	</a>
       <% end %>

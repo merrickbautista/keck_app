@@ -1,0 +1,27 @@
+<h1>Hello</h1>
+<% @answers = params[:answers] %>
+<% @count = Question.all.count %>
+<% @correct = 0 %>
+<% @count.times do |i| %>
+	<% if @answers[i] == "A" %>
+		<% if Question.find(i+1).answers[0].correct == true %>
+			<% @correct += 1 %>
+		<% end %>
+	<% end %>
+	<% if @answers[i] == "B" %>
+		<% if Question.find(i+1).answers[1].correct == true %>
+			<% @correct += 1 %>
+		<% end %>
+	<% end %>
+	<% if @answers[i] == "C" %>
+		<% if Question.find(i+1).answers[2].correct == true %>
+			<% @correct += 1 %>
+		<% end %>
+	<% end %>
+	<% if @answers[i] == "D" %>
+		<% if Question.find(i+1).answers[3].correct == true %>
+			<% @correct += 1 %>
+		<% end %>
+	<% end %>
+<% end %>
+<%= (Float(@correct) * 100/@count).round(2) %><%="%"%>

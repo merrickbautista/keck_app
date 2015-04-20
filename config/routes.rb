@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  get 'exams/new'
+
   devise_for :users
   resources :questions
+  resources :exams
   get 'pre_show', to: 'questions#pre_show'
+  get 'finished', to: 'static_pages#finished'
   root to: "static_pages#home"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
