@@ -15,8 +15,6 @@ class QuestionsController < ApplicationController
   def show
   	@question = Question.find(params[:id])
     @count = @questions.where(subject: params[:subject]).size
-    puts "!!!"
-    puts @count
   end
 
   def index

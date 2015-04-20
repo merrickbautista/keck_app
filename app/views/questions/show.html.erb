@@ -1,6 +1,6 @@
 <h1><%= @question.subject %></h1>
 <div class="question">
-	<%= @question.id%>. <%= @question.content %>
+	<%= @question.id-@questions.first.id + 1%>. <%= @question.content %>
 </div>
 <div class="choices">
   <%= form_tag(question_path(@question.id, answers: params[:answers], subject: params[:subject]), method: :put) do %>
@@ -49,7 +49,7 @@
       <% end %>
     </li>
     <% @count.times do |i| %>
-    	<li><a href=<%=question_path(i+@questions.first.id, answers: params[:answers], subject: params[:subject])%>><%=i+@questions.first.id%></a></li>
+    	<li><a href=<%=question_path(i+@questions.first.id, answers: params[:answers], subject: params[:subject])%>><%=i+1%></a></li>
     <% end %>
     <li>
    	  <% if @question.id < (@count + @questions.first.id - 1) %>
