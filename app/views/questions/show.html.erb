@@ -3,31 +3,31 @@
 	<%= @question.id%>. <%= @question.content %>
 </div>
 <div class="choices">
-  <%= form_tag(question_path(@question.id, answers: params[:answers]), method: :put) do %>
+  <%= form_tag(question_path(@question.id, answers: params[:answers], subject: params[:subject]), method: :put) do %>
   <% @answers = params[:answers] %>
 	<label class="radio">
-    <% if @answers[@question.id-1] == "A" %>
+    <% if @answers[@question.id-@questions.first.id] == "A" %>
 	   <%= radio_button_tag :answer, "A", active: true %> A. <%=@question.answers[0].content%>
     <% else %>
       <%= radio_button_tag :answer, "A" %> A. <%=@question.answers[0].content%>
     <% end %>
 	</label>
 	<label class="radio">
-	  <% if @answers[@question.id-1] == "B" %>
+	  <% if @answers[@question.id-@questions.first.id] == "B" %>
      <%= radio_button_tag :answer, "B", active: true %> B. <%=@question.answers[1].content%>
     <% else %>
       <%= radio_button_tag :answer, "B" %> B. <%=@question.answers[1].content%>
     <% end %>
 	</label>
 	<label class="radio">
-	  <% if @answers[@question.id-1] == "C" %>
+	  <% if @answers[@question.id-@questions.first.id] == "C" %>
      <%= radio_button_tag :answer, "C", active: true %> C. <%=@question.answers[2].content%>
     <% else %>
       <%= radio_button_tag :answer, "C" %> C. <%=@question.answers[2].content%>
     <% end %>
 	</label>
 	<label class="radio">
-	  <% if @answers[@question.id-1] == "D" %>
+	  <% if @answers[@question.id-@questions.first.id] == "D" %>
      <%= radio_button_tag :answer, "D", active: true %> D. <%=@question.answers[3].content%>
     <% else %>
       <%= radio_button_tag :answer, "D" %> D. <%=@question.answers[3].content%>
@@ -35,25 +35,25 @@
   </label>
   <div class="submit-buttons">
     <%= submit_tag 'Submit Answer' , class: "btn btn-primary btn-sm" %>
-    <%= link_to "Score Exam", finished_path(answers: params[:answers]), class: "btn btn-success btn-sm" %>
+    <%= link_to "Score Exam", finished_path(answers: params[:answers], subject: params[:subject]), class: "btn btn-success btn-sm" %>
   </div>
   <% end %>
 </div>
 <nav>
   <ul class="pagination">
     <li>
-      <% if @question.id > 1 %>
-      	<a href=<%=question_path(@question.id-1, answers: params[:answers])%> aria-label="Previous">
+      <% if @question.id > @questions.first.id %>
+      	<a href=<%=question_path(@question.id-1, answers: params[:answers], subject: params[:subject])%> aria-label="Previous">
         	<span aria-hidden="true">&laquo;</span>
       	</a>
       <% end %>
     </li>
     <% @count.times do |i| %>
-    	<li><a href=<%=question_path(i+1, answers: params[:answers])%>><%=i+1%></a></li>
+    	<li><a href=<%=question_path(i+@questions.first.id, answers: params[:answers], subject: params[:subject])%>><%=i+@questions.first.id%></a></li>
     <% end %>
     <li>
-   	  <% if @question.id < @count %>
-      	<a href=<%=question_path(@question.id+1, answers: params[:answers]) %> aria-label="Next">
+   	  <% if @question.id < (@count + @questions.first.id - 1) %>
+      	<a href=<%=question_path(@question.id+1, answers: params[:answers], subject: params[:subject]) %> aria-label="Next">
         	<span aria-hidden="true">&raquo;</span>
       	</a>
       <% end %>

@@ -1,27 +1,38 @@
-<h1>Hello</h1>
 <% @answers = params[:answers] %>
-<% @count = Question.all.count %>
+<% @questions = Question.all.where(subject: params[:subject]) %>
+<% @count = Question.all.where(subject: params[:subject]).count %>
 <% @correct = 0 %>
 <% @count.times do |i| %>
 	<% if @answers[i] == "A" %>
-		<% if Question.find(i+1).answers[0].correct == true %>
+		<% if Question.find(i+@questions.first.id).answers[0].correct == true %>
 			<% @correct += 1 %>
 		<% end %>
 	<% end %>
 	<% if @answers[i] == "B" %>
-		<% if Question.find(i+1).answers[1].correct == true %>
+		<% if Question.find(i+@questions.first.id).answers[1].correct == true %>
 			<% @correct += 1 %>
 		<% end %>
 	<% end %>
 	<% if @answers[i] == "C" %>
-		<% if Question.find(i+1).answers[2].correct == true %>
+		<% if Question.find(i+@questions.first.id).answers[2].correct == true %>
 			<% @correct += 1 %>
 		<% end %>
 	<% end %>
 	<% if @answers[i] == "D" %>
-		<% if Question.find(i+1).answers[3].correct == true %>
+		<% if Question.find(i+@questions.first.id).answers[3].correct == true %>
 			<% @correct += 1 %>
 		<% end %>
 	<% end %>
 <% end %>
-<%= (Float(@correct) * 100/@count).round(2) %><%="%"%>
+<% @grade = ((Float(@correct) * 100/@count).round(2)) %>
+<% @width = "\"width: #{@grade}%;\"".html_safe %>
+<div class="jumbotron">
+  <h1><small>You scored: </small><%= @grade %>%</h1>
+  <p>Click below to review your test.</p>
+  <p><a class="btn btn-primary btn-lg" href="#" role="button">Review</a></p>
+</div>
+<div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow=<%=@grade%> aria-valuemin="0" aria-valuemax="100" style=<%= @width %>>
+    <%=@grade%>%
+  </div>
+</div>

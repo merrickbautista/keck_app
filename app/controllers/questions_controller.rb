@@ -3,17 +3,20 @@ class QuestionsController < ApplicationController
 
   def new
     @answers = ""
-    @count = Question.all.size
+    @questions = Question.all
+    @count = @questions.where(subject: params[:subject]).size
+    @questions = @questions.where(subject: params[:subject])
     @count.times do 
       @answers << 'X';
     end
-    puts @answers
-    redirect_to action: 'show', id:1, answers:@answers
+    redirect_to action: 'show', id:@questions.first.id, answers:@answers, subject: params[:subject]
   end
 
   def show
-    puts "!!!"
   	@question = Question.find(params[:id])
+    @count = @questions.where(subject: params[:subject]).size
+    puts "!!!"
+    puts @count
   end
 
   def index
@@ -29,17 +32,19 @@ class QuestionsController < ApplicationController
     @answers = params[:answers]
     @current = params[:id].to_i
     @next = @current + 1
-    @answers[@current-1] = params[:answer]
-    if @next > @count
-      redirect_to action: 'show', id:@current, answers: params[:answers]
+    @answers[@current-@questions.count-@questions.first.id] = params[:answer]
+    if @next > (@count + @questions.first.id - 1)
+      redirect_to action: 'show', id:@current, answers: params[:answers], subject: params[:subject]
     else
-      redirect_to action: 'show', id:@next, answers: params[:answers]
+      redirect_to action: 'show', id:@next, answers: params[:answers], subject: params[:subject]
     end
   end
 
   private
   def prepare
-    @count = Question.all.size
+    @questions = Question.all
+    @count = @questions.where(subject: params[:subject]).size
+    @questions = @questions.where(subject: params[:subject])
   end
 
 
