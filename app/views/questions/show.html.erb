@@ -35,7 +35,7 @@
   </label>
   <div class="submit-buttons">
     <%= submit_tag 'Submit Answer' , class: "btn btn-primary btn-sm" %>
-    <%= link_to "Score Exam", finished_path(answers: params[:answers], subject: params[:subject]), class: "btn btn-success btn-sm" %>
+    <%= link_to "Score Exam", prefinished_path(answers: params[:answers], subject: params[:subject]), class: "btn btn-success btn-sm" %>
   </div>
   <% end %>
 </div>

@@ -1,2 +1,7 @@
-<h1><%= params[:subject] %></h1>
-<%= link_to "Begin Test", new_question_path(subject: params[:subject]), class: "btn btn-primary" %>
+<% @count = Question.all.where(subject: params[:subject]).size %>
+
+<div class="jumbotron">
+  <h1><%= params[:subject] %></h1>
+  <p>This exam has <%=@count%> questions.</p>
+  <p><a class="btn btn-primary btn-lg" href=<%=new_question_path(subject: params[:subject]) %> role="button">Begin Exam</a></p>
+</div>

@@ -5,4 +5,8 @@ class StaticPagesController < ApplicationController
   def finished
   	@answers = params[:answers]
   end
+
+  def prefinished
+  	@answers = params[:answers]
+  end
 end

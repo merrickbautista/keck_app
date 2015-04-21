@@ -1,0 +1,8 @@
+<% @questions = Question.all.where(subject: params[:subject]) %>
+
+<div class="jumbotron">
+  <h1>Hold on one minute.</h1>
+  <p>Are you ready to see your grade?</p>
+  <p><a class="btn btn-danger btn-lg" href=<%= finished_path(answers: params[:answers], subject: params[:subject]) %> role="button">Score Exam</a></p>
+  <p><a class="btn btn-info" href=<%= question_path(@questions.first.id, answers: params[:answers], subject: params[:subject]) %> role="button">Go Back to Exam</a></p>
+</div>

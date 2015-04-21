@@ -2,6 +2,7 @@
 <% @questions = Question.all.where(subject: params[:subject]) %>
 <% @count = Question.all.where(subject: params[:subject]).count %>
 <% @correct = 0 %>
+<% @unanswered = 0 %>
 <% @count.times do |i| %>
 	<% if @answers[i] == "A" %>
 		<% if Question.find(i+@questions.first.id).answers[0].correct == true %>

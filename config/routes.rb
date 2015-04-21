@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :exams
   get 'pre_show', to: 'questions#pre_show'
   get 'finished', to: 'static_pages#finished'
+  get 'prefinished', to: 'static_pages#prefinished'
   get 'review', to: 'questions#review'
   root to: "static_pages#home"
   # The priority is based upon order of creation: first created -> highest priority.

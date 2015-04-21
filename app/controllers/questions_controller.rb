@@ -30,11 +30,17 @@ class QuestionsController < ApplicationController
     @answers = params[:answers]
     @current = params[:id].to_i
     @next = @current + 1
-    @answers[@current-@questions.count-@questions.first.id] = params[:answer]
-    if @next > (@count + @questions.first.id - 1)
+    puts params[:answer]
+    puts "!!!"
+    if params[:answer].nil?
       redirect_to action: 'show', id:@current, answers: params[:answers], subject: params[:subject]
     else
-      redirect_to action: 'show', id:@next, answers: params[:answers], subject: params[:subject]
+      @answers[@current-@questions.count-@questions.first.id] = params[:answer]
+      if @next > (@count + @questions.first.id - 1)
+        redirect_to action: 'show', id:@current, answers: params[:answers], subject: params[:subject]
+      else
+        redirect_to action: 'show', id:@next, answers: params[:answers], subject: params[:subject]
+      end
     end
   end
 
