@@ -29,7 +29,7 @@
 <div class="jumbotron">
   <h1><small>You scored: </small><%= @grade %>%</h1>
   <p>Click below to review your test.</p>
-  <p><a class="btn btn-primary btn-lg" href="#" role="button">Review</a></p>
+  <p><a class="btn btn-primary btn-lg" href=<%= review_path(answers: params[:answers], subject: params[:subject]) %> role="button">Review</a></p>
 </div>
 <div class="progress">
   <div class="progress-bar" role="progressbar" aria-valuenow=<%=@grade%> aria-valuemin="0" aria-valuemax="100" style=<%= @width %>>

@@ -1,0 +1,21 @@
+<h1>Review</h1>
+<% @answers = params[:answers] %>
+<% @questions = Question.all.where(subject: params[:subject]) %>
+<% @count = Question.all.where(subject: params[:subject]).count %>
+<% @incorrect = "\"border: solid red 1px;\"".html_safe %>
+
+<% @count.times do |i| %>
+	<%= @questions[i].answers.where(correct: true) %>
+	<%#Need helper function %>
+	<div class ="question-container" style=<%= @answers[i] == @questions[i].answers.where(correct: true) ? "" : @incorrect %>>
+		<div class="question">
+			<%=i+1%>. <%= @questions[i].content %>
+		</div>
+		<div class="choices">
+			<label class="radio disabled"><%= radio_button_tag @questions[i].id, "A", @answers[i] == "A" ? true : false, disabled: true%> A. <%=@questions[i].answers[0].content%></label>
+			<label class="radio disabled"><%= radio_button_tag @questions[i].id, "B", @answers[i] == "B" ? true : false, disabled: true%> B. <%=@questions[i].answers[1].content%></label>
+			<label class="radio disabled"><%= radio_button_tag @questions[i].id, "C", @answers[i] == "C" ? true : false, disabled: true%> C. <%=@questions[i].answers[2].content%></label>
+			<label class="radio disabled"><%= radio_button_tag @questions[i].id, "D", @answers[i] == "D" ? true : false, disabled: true%> D. <%=@questions[i].answers[3].content%></label>
+		</div>
+	</div>
+<% end %>
