@@ -31,7 +31,6 @@ class QuestionsController < ApplicationController
     @current = params[:id].to_i
     @next = @current + 1
     puts params[:answer]
-    puts "!!!"
     if params[:answer].nil?
       redirect_to action: 'show', id:@current, answers: params[:answers], subject: params[:subject]
     else

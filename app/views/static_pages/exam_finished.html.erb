@@ -1,0 +1,71 @@
+<% @answers = params[:answers] %>
+<% @questions = Question.all %>
+<% @count = Question.all.size %>
+<% @correct = 0 %>
+<% @count.times do |i| %>
+	<% if @answers[i] == "A" %>
+		<% if Question.find(i+1).answers[0].correct == true %>
+			<% @correct += 1 %>
+		<% end %>
+	<% end %>
+	<% if @answers[i] == "B" %>
+		<% if Question.find(i+1).answers[1].correct == true %>
+			<% @correct += 1 %>
+		<% end %>
+	<% end %>
+	<% if @answers[i] == "C" %>
+		<% if Question.find(i+1).answers[2].correct == true %>
+			<% @correct += 1 %>
+		<% end %>
+	<% end %>
+	<% if @answers[i] == "D" %>
+		<% if Question.find(i+1).answers[3].correct == true %>
+			<% @correct += 1 %>
+		<% end %>
+	<% end %>
+<% end %>
+<% @grade = ((Float(@correct) * 100/@count).round(2)) %>
+<% @width = "\"width: #{@grade}%;\"".html_safe %>
+<div class="jumbotron">
+  <h1><small>You scored: </small><%= @grade %>%</h1>
+  <p>Click below to review your test.</p>
+  <p><a class="btn btn-primary btn-lg" href=<%= exam_review_path(answers: params[:answers]) %> role="button">Review</a></p>
+</div>
+<% @subjects = ["Physiology", "Pharmacology", "Neurochemistry", "Psychiatry"] %>
+<% @subjects.each do |s| %>
+	<% @squestions = Question.all.where(subject: s) %>
+	<% @scount = @squestions.count %>
+	<% @scorrect = 0 %>
+	<% @scount.times do |i| %>
+		<% if @answers[i+@squestions.first.id-1] == "A" %>
+			<% if Question.find(i+@squestions.first.id).answers[0].correct == true %>
+				<% @scorrect += 1 %>
+			<% end %>
+		<% end %>
+		<% if @answers[i+@squestions.first.id-1] == "B" %>
+			<% if Question.find(i+@squestions.first.id).answers[1].correct == true %>
+				<% @scorrect += 1 %>
+			<% end %>
+		<% end %>
+		<% if @answers[i+@squestions.first.id-1] == "C" %>
+			<% if Question.find(i+@squestions.first.id).answers[2].correct == true %>
+				<% @scorrect += 1 %>
+			<% end %>
+		<% end %>
+		<% if @answers[i+@squestions.first.id-1] == "D" %>
+			<% if Question.find(i+@squestions.first.id).answers[3].correct == true %>
+				<% @scorrect += 1 %>
+			<% end %>
+		<% end %>
+	<% end %>
+	<%= s %> <%=@scorrect%>/<%=@scount%>
+	<% @sgrade = ((Float(@scorrect) * 100/@scount).round(2)) %>
+	<% @swidth = "\"width: #{@sgrade}%;\"".html_safe %>
+	<% @success = "\"progress-bar progress-bar-success\"".html_safe %>
+	<% @failure = "\"progress-bar progress-bar-danger\"".html_safe %>
+	<div class="progress">
+  		<div class=<%= @sgrade >= 70 ? @success : @failure %> role="progressbar" aria-valuenow=<%=@sgrade%> aria-valuemin="0" aria-valuemax="100" style=<%= @swidth %>>
+    	<%=@sgrade%>%
+  		</div>
+	</div>
+<% end %>

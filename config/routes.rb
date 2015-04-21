@@ -5,9 +5,13 @@ Rails.application.routes.draw do
   resources :questions
   resources :exams
   get 'pre_show', to: 'questions#pre_show'
+  get 'exam_pre_show', to: 'exams#pre_show'
   get 'finished', to: 'static_pages#finished'
+  get 'exam_finished', to: 'static_pages#exam_finished'
   get 'prefinished', to: 'static_pages#prefinished'
+  get 'exam_prefinished', to: 'static_pages#exam_prefinished'
   get 'review', to: 'questions#review'
+  get 'exam_review', to: 'exams#review'
   root to: "static_pages#home"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
