@@ -1,7 +1,8 @@
-<% @count = Question.all.size %>
+<% @subject = params[:subject] %>
+<% @count = Question.where(subject: params[:subject]).count %>
 
 <div class="jumbotron">
-  <h1>Practice Exam</h1>
+  <h1><%= @subject %></h1>
   <p>This exam has <%=@count%> questions.</p>
-  <p><a class="btn btn-primary btn-lg" href=<%=new_exam_path %> role="button">Begin Exam</a></p>
+  <p><a class="btn btn-primary btn-lg" href=<%=new_exam_path(subject: @subject) %> role="button">Begin Exam</a></p>
 </div>

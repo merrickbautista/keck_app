@@ -1,33 +1,34 @@
 <h1><%= @question.subject %></h1>
+<% @subject = params[:subject] %>
 <div class="question">
-	<%= @question.id-@questions.first.id + 1%>. <%= @question.content %>
+  <%= @question.id %>. <%= @question.content %>
 </div>
 <div class="choices">
-  <%= form_tag(question_path(@question.id, answers: params[:answers], subject: params[:subject]), method: :put) do %>
-  <% @answers = params[:answers] %>
-	<label class="radio">
-    <% if @answers[@question.id-@questions.first.id] == "A" %>
-	   <%= radio_button_tag :answer, "A", active: true %> A. <%=@question.answers[0].content%>
+  <%= form_tag(exam_path(@question.id, subject: @subject), method: :put) do %>
+  <% @answers = session[:answers] %>
+  <label class="radio">
+    <% if @answers[@question.id-1] == "A" %>
+     <%= radio_button_tag :answer, "A", active: true %> A. <%=@question.answers[0].content%>
     <% else %>
       <%= radio_button_tag :answer, "A" %> A. <%=@question.answers[0].content%>
     <% end %>
-	</label>
-	<label class="radio">
-	  <% if @answers[@question.id-@questions.first.id] == "B" %>
+  </label>
+  <label class="radio">
+    <% if @answers[@question.id-1] == "B" %>
      <%= radio_button_tag :answer, "B", active: true %> B. <%=@question.answers[1].content%>
     <% else %>
       <%= radio_button_tag :answer, "B" %> B. <%=@question.answers[1].content%>
     <% end %>
-	</label>
-	<label class="radio">
-	  <% if @answers[@question.id-@questions.first.id] == "C" %>
+  </label>
+  <label class="radio">
+    <% if @answers[@question.id-1] == "C" %>
      <%= radio_button_tag :answer, "C", active: true %> C. <%=@question.answers[2].content%>
     <% else %>
       <%= radio_button_tag :answer, "C" %> C. <%=@question.answers[2].content%>
     <% end %>
-	</label>
-	<label class="radio">
-	  <% if @answers[@question.id-@questions.first.id] == "D" %>
+  </label>
+  <label class="radio">
+    <% if @answers[@question.id-1] == "D" %>
      <%= radio_button_tag :answer, "D", active: true %> D. <%=@question.answers[3].content%>
     <% else %>
       <%= radio_button_tag :answer, "D" %> D. <%=@question.answers[3].content%>
@@ -35,27 +36,27 @@
   </label>
   <div class="submit-buttons">
     <%= submit_tag 'Submit Answer' , class: "btn btn-primary btn-sm" %>
-    <%= link_to "Score Exam", prefinished_path(answers: params[:answers], subject: params[:subject]), class: "btn btn-success btn-sm" %>
+    <%= link_to "Score Exam", exam_prefinished_path(subject: @subject), class: "btn btn-success btn-sm" %>
   </div>
   <% end %>
 </div>
 <nav>
   <ul class="pagination">
     <li>
-      <% if @question.id > @questions.first.id %>
-      	<a href=<%=question_path(@question.id-1, answers: params[:answers], subject: params[:subject])%> aria-label="Previous">
-        	<span aria-hidden="true">&laquo;</span>
-      	</a>
+      <% if @question.id > 1 %>
+        <a href=<%=exam_path(@question.id-1, subject: @subject)%> aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
       <% end %>
     </li>
     <% @count.times do |i| %>
-    	<li><a href=<%=question_path(i+@questions.first.id, answers: params[:answers], subject: params[:subject])%>><%=i+1%></a></li>
+      <li><a href=<%=exam_path(i+1, subject: @subject)%>><%=i+1%></a></li>
     <% end %>
     <li>
-   	  <% if @question.id < (@count + @questions.first.id - 1) %>
-      	<a href=<%=question_path(@question.id+1, answers: params[:answers], subject: params[:subject]) %> aria-label="Next">
-        	<span aria-hidden="true">&raquo;</span>
-      	</a>
+      <% if @question.id < (@count) %>
+        <a href=<%=exam_path(@question.id+1, subject: @subject) %> aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
       <% end %>
     </li>
   </ul>

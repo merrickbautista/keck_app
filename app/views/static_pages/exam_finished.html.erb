@@ -1,4 +1,5 @@
-<% @answers = params[:answers] %>
+<% @subject = params[:subject] %>
+<% @answers = session[:answers] %>
 <% @questions = Question.all %>
 <% @count = Question.all.size %>
 <% @correct = 0 %>
@@ -29,7 +30,7 @@
 <div class="jumbotron">
   <h1><small>You scored: </small><%= @grade %>%</h1>
   <p>Click below to review your test.</p>
-  <p><a class="btn btn-primary btn-lg" href=<%= exam_review_path(answers: params[:answers]) %> role="button">Review</a></p>
+  <p><a class="btn btn-primary btn-lg" href=<%= exam_review_path(subject: @subject) %> role="button">Review</a></p>
 </div>
 <% @subjects = ["Physiology", "Pharmacology", "Neurochemistry", "Psychiatry"] %>
 <% @subjects.each do |s| %>

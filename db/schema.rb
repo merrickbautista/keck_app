@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150420220220) do
+ActiveRecord::Schema.define(version: 20150512022403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: true do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.boolean  "correct"
     t.string   "content"
+    t.boolean  "correct",     default: false
     t.integer  "question_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "exams", force: true do |t|
@@ -33,15 +33,16 @@ ActiveRecord::Schema.define(version: 20150420220220) do
   end
 
   create_table "questions", force: true do |t|
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
     t.string   "content"
     t.string   "subject"
+    t.integer  "exam_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "subject_index"
   end
 
-  create_table "scantrons", force: true do |t|
-    t.string   "answers"
+  create_table "subjects", force: true do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

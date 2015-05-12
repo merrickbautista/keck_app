@@ -1,15 +1,15 @@
 <h1>Welcome to the KeckStand</h1>
 
 <div class="container-option">
-		<%= link_to "Neuroanatomy", pre_show_path(subject: "Neuroanatomy"), class: "btn btn-success btn-lg btn-option" %>
-		<%= link_to "Pathology", pre_show_path(subject: "Pathology"), class: "btn btn-success btn-lg btn-option" %>
-	  	<%= link_to "Physiology", pre_show_path(subject: "Physiology"), class: "btn btn-success btn-lg btn-option" %>
-	  	<%= link_to "Pharmacology", pre_show_path(subject: "Pharmacology"), class: "btn btn-warning btn-lg btn-option" %>
-	  	<%= link_to "Neurochemistry", pre_show_path(subject: "Neurochemistry"), class: "btn btn-success btn-lg btn-option" %>
+		<%= link_to "Neuroanatomy", exam_pre_show_path(subject: "Neuroanatomy"), class: "btn btn-success btn-lg btn-option" %>
+		<%= link_to "Pathology", exam_pre_show_path(subject: "Pathology"), class: "btn btn-success btn-lg btn-option" %>
+	  	<%= link_to "Physiology", exam_pre_show_path(subject: "Physiology"), class: "btn btn-success btn-lg btn-option" %>
+	  	<%= link_to "Pharmacology", exam_pre_show_path(subject: "Pharmacology"), class: "btn btn-warning btn-lg btn-option" %>
+	  	<%= link_to "Neurochemistry", exam_pre_show_path(subject: "Neurochemistry"), class: "btn btn-success btn-lg btn-option" %>
 	  	<%= link_to "Neurology", '#', class: "btn btn-primary btn-lg btn-option disabled" %>
-	  	<%= link_to "Psychiatry", pre_show_path(subject: "Psychiatry"), class: "btn btn-success btn-lg btn-option" %>
+	  	<%= link_to "Psychiatry", exam_pre_show_path(subject: "Psychiatry"), class: "btn btn-success btn-lg btn-option" %>
 	  	<%= link_to "Neuroradiology", '#', class: "btn btn-primary btn-lg btn-option disabled" %>
-	  	<%= link_to "Microanatomy", pre_show_path(subject: "Microanatomy"), class: "btn btn-success btn-lg btn-option" %>
-	  	<%= link_to "Embryology", pre_show_path(subject: "Embryology"), class: "btn btn-success btn-lg btn-option" %>
+	  	<%= link_to "Microanatomy", exam_pre_show_path(subject: "Microanatomy"), class: "btn btn-success btn-lg btn-option" %>
+	  	<%= link_to "Embryology", exam_pre_show_path(subject: "Embryology"), class: "btn btn-success btn-lg btn-option" %>
 	  	<%= link_to "Practice Exam", exam_pre_show_path, class: "btn btn-danger btn-lg btn-option-xl" %>
 </div>

@@ -1,8 +1,7 @@
-<% @questions = Question.all %>
-<% @count = @questions.count %>
-<% @answers = params[:answers] %>
+<% @subject = params[:subject] %>
+<% @answers = session[:answers] %>
 <% @unanswered = 0 %>
-<% @count.times do |i| %>
+<% @answers.size.times do |i| %>
 	<% if @answers[i] == "X" %>
 		<% @unanswered += 1 %>
 	<% end %>
@@ -14,6 +13,6 @@
   <% if @unanswered > 0 %>
   	<p>You still have <strong><%= @unanswered %></strong> unanswered questions.
   <% end %>
-  <p><a class="btn btn-danger btn-lg" href=<%= exam_finished_path(answers: params[:answers]) %> role="button">Score Exam</a></p>
-  <p><a class="btn btn-info" href=<%= exam_path(1, answers: params[:answers]) %> role="button">Go Back to Exam</a></p>
+  <p><a class="btn btn-danger btn-lg" href=<%= exam_finished_path(subject: @subject) %> role="button">Score Exam</a></p>
+  <p><a class="btn btn-info" href=<%= question_path(1, subject: @subject) %> role="button">Go Back to Exam</a></p>
 </div>
